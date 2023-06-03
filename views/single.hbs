@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheeseBurger</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    {{>header}}
+    <main>
+        <div class="content_single">
+            <div class="image">
+                <img src="/Cookies/foods/{{food.image}}" alt="burger">
+            </div>
+            <div class="desc">
+                <div class="desc_name">
+                    <p id="product_name">{{food.title}}</p> <br><br>
+                </div>
+                <div class="desc_ul">
+                    <ul>
+                        <li>2 pounds freshly ground chuck</li>
+                        <li>1 tablespoon onion powder.</li>
+                        <li>1 teaspoon salt.</li>
+                        <li>1 teaspoon freshly ground black pepper.</li>
+                        <li>12 slices deli-counter American cheese.</li>
+                        <li>6 large burger buns, preferably homemade, toasted if desired.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <div class="second_footer">
+        {{>footer}}
+    </div>
+</body>
+
+</html>

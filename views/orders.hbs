@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    {{>header}}
+    <main>
+        <div class="content_profile">
+            <div class="profile_menu">
+                <div class="profile_pic">
+                    <img src="./Images/profile.jpg">
+                </div>
+                <div class="profile_username">
+                    <h2>{{user.name}} {{user.surname}}</h2>
+                </div>
+                <div class="profile_links">
+                    <ul>
+                        <li>
+                            <a href="/profile"><i class="fa fa-user" aria-hidden="true"></i>Settings </a>
+                        </li>
+                        <li>
+                            <a href="/orders"><i class="fa fa-shopping-cart" aria-hidden="true"></i>My order </a>
+                        </li>
+                        <li>
+                            <a href="/signout"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign out </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="order_info">
+                {{#each orders}}
+                <div class="card_info">
+                    <div class="info_product">
+                        <h2>{{food.title}}</h2>
+                        <img src="/Cookies/foods/{{food.image}}" alt="Burger">
+
+                    </div>
+                    <div class="count_product">
+                        <div class="count">
+                            <form action="/addCard/{{id}}">
+                                <p>Count` &#x20;</p>
+                                <input type="number" name="count" id="count" value="{{count}}"> <br>
+                                <button type="button" id="plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <button type="button" id="minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="price">
+                            <input type="hidden" name="price" id="hidden_price">
+                            <p>Price` &#160;</p>
+                            <p id="price"> {{price}}</p>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </main>
+    <div class="second_footer">
+
+        {{>footer}}
+    </div>
+</body>
+
+
+<script>
+    var arjeq = document.getElementById("price")
+    const zeroprice = +arjeq.textContent
+    var modal = document.getElementById("myModal");
+    var plus = document.getElementById("plus");
+    var minus = document.getElementById("minus");
+    var qanak = document.getElementById("count")
+    var hideden_arjeq = document.getElementById("hidden_price")
+    var btn = document.getElementById("myBtn");
+    
+    plus.onclick = function () {
+        var value = qanak.value;
+        value++
+        qanak.value = value;
+        arjeq.innerHTML = value * zeroprice
+        hideden_arjeq.value = value * zeroprice
+    }
+    minus.onclick = function () {
+        var value = qanak.value;
+        if (value > 1) {
+            value--
+        }
+        qanak.value = value;
+        arjeq.innerHTML = value * zeroprice
+        hideden_arjeq.value = value * zeroprice
+
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    } 
+</script>
+
+</html>

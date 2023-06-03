@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lunch Time</title>
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+  {{>header}}
+
+  <main>
+    <div class="content">
+      <div class="title">
+        <p class="name">Welcome to our Restaurant <br>
+          &#9734;Le Lunch Time&#9734;</p>
+      </div>
+      <div class="slide" id="slidy-container">
+        <figure id="slidy">
+          <img src="../Images/lunchtime4.jpg" alt="Photograph">
+          <img src="../Images/lunchtime3.jpg" alt="Photograph">
+          <img src="../Images/lunchtime2.jpg" alt="Photograph">
+          <img src="../Images/lunchtime1.jpg" alt="Photograph">
+        </figure>
+      </div>
+      <div class="info">
+        <h2>Get to Know Us</h2>
+        <p>&#9734;Le Lunch Time&#9734; restaurant was opened in 2004. on April 26 in the city of Artik...
+          Focusing on the goals of “Quality, Healthy, and Tradition” the company is family
+          operation making each dish in our own kitchens from scratch. Lunch Time Restaurant
+          has three generations of family member working together to fulfill the idea “Honor
+          the Customer, Quality Comes First”. Every day, before dawn, without fail, each store
+          begins to grind up soybeans, roll out the dough for the oven baked bun and light the
+          stoves to begin frying the deep fried crullers. We take pride in the faces of our
+          satisfied customers leaving the restaurant after.
+          Mister Burger restaurant was opened in 2004. on April 26 in the city of Artik...
+          Focusing on the goals of “Quality, Healthy, and Tradition” the company is family
+          operation making each dish in our own kitchens from scratch. Lunch Time Restaurant
+          has three generations of family member working together to fulfill the idea “Honor
+          the Customer, Quality Comes First”. Every day, before dawn, without fail, each store
+          begins to grind up soybeans, roll out the dough for the oven baked bun and light the
+          stoves to begin frying the deep fried crullers. We take pride in the faces of our
+          satisfied customers leaving the restaurant after.
+        </p>
+      </div>
+
+      <div class="index-feedbacks">
+        <h1>Feedbacks</h1>
+        <div class="feeds">
+          {{#each feedbacks}}
+          <div class="fd_back">
+            <div class="sim">
+              <p>&#10078;</p>
+            </div>
+            <div class="fd_text">
+              <p>{{message}}</p>
+            </div>
+            <div class="fd_name">
+              <p>{{name}} {{surname}}</p>
+            </div>
+            <div class="fd_email">
+              <p>{{email}}</p>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {{>footer}}
+  <script>
+    var cssSlidy = function (newOptions) {
+      var options = (function () {
+        var mergedOptions = {},
+          defaultOptions = {
+            timeOnSlide: 3,
+            timeBetweenSlides: 1,
+            slidyContainerSelector: '#slidy-container',
+            slidySelector: '#slidy',
+            slidyDirection: 'left',
+            fallbackFunction: function () { },
+            cssAnimationName: 'slidy',
+
+          };
+        for (var option in defaultOptions) mergedOptions[option] = defaultOptions[option];
+        for (var option in newOptions) mergedOptions[option] = newOptions[option];
+        return mergedOptions;
+      })(),
+        CS = this;
+      CS.animationString = 'animation';
+      CS.hasAnimation = false;
+      CS.keyframeprefix = '';
+      CS.domPrefixes = 'Webkit Moz O Khtml'.split(' ');
+      CS.pfx = '';
+      CS.element = document.getElementById(options.slidySelector.replace('#', ''));
+      CS.init = (function () {
+        if (CS.element.style.animationName !== undefined) CS.hasAnimation = true;
+        if (CS.hasAnimation === false) {
+          for (var i = 0; i < CS.domPrefixes.length; i++) {
+            if (CS.element.style[CS.domPrefixes[i] + 'AnimationName'] !== undefined) {
+              CS.pfx = domPrefixes[i];
+              CS.animationString = pfx + 'Animation';
+              CS.keyframeprefix = '-' + pfx.toLowerCase() + '-';
+              CS.hasAnimation = true;
+              break;
+            }
+          }
+        }
+        if (CS.hasAnimation === true) {
+          var images = CS.element.getElementsByTagName("img")
+          var L = images.length;
+          var fig = document.createElement('figure'),
+            who, temp;
+          while (L) {
+            temp = fig.cloneNode(false);
+            who = images[--L];
+            who.parentNode.insertBefore(temp, who);
+
+          }
+          var figs = CS.element.getElementsByTagName("figure");
+          var firstFig = figs[0];
+          figWrap = firstFig.cloneNode(true);
+          CS.element.appendChild(figWrap);
+          var imgCount = images.length,
+            totalTime = (options.timeOnSlide + options.timeBetweenSlides) * (imgCount - 2.2),
+            slideRatio = (options.timeOnSlide / totalTime) * 100,
+            moveRatio = (options.timeBetweenSlides / totalTime) * 100,
+            basePercentage = 100 / imgCount,
+            position = 0,
+            css = document.createElement("style");
+          css.type = "text/css";
+          css.id = options.slidySelector.replace('#', '') + "-css";
+          css.innerHTML += options.slidyContainerSelector + " { overflow: hidden; }\n";
+          css.innerHTML += options.slidySelector + " { text-align: left; margin: 0; font-size: 0; position: relative; width: " + (imgCount * 100) + "%;  }\n"; // set the width for the inner slider container
+          css.innerHTML += options.slidySelector + " figure { float: left; margin: 0; position: relative; display: inline-block; width: " + basePercentage + "%; height: auto; }\n";
+          css.innerHTML += options.slidySelector + " figure img { width: 100%; }\n";
+          css.innerHTML += options.slidySelector + ":hover figure figcaption { opacity: 1; ";
+          css.innerHTML += " }\n";
+          css.innerHTML += "@" + keyframeprefix + "keyframes " + options.cssAnimationName + " {\n";
+          if (options.slidyDirection == "right") {
+            for (i = imgCount - 1; i > 0; i--) {
+              position += slideRatio;
+              css.innerHTML += position + "% { left: -" + (i * 100) + "%; }\n";
+              position += moveRatio;
+              css.innerHTML += position + "% { left: -" + ((i - 1) * 100) + "%; }\n";
+            }
+          } else {
+            for (i = 0; i < (imgCount - 3); i++) {
+              position += slideRatio;
+              css.innerHTML += position + "% { left: -" + (i * 100) + "%; }\n";
+              position += moveRatio;
+              css.innerHTML += position + "% { left: -" + ((i + 1) * 100) + "%; }\n";
+            }
+          }
+          css.innerHTML += "}\n";
+          css.innerHTML += options.slidySelector + " { ";
+          if (options.slidyDirection == "right") { css.innerHTML += "left: " + imgCount * 100 + "%" }
+          else { css.innerHTML += "left: 0%; " }
+
+          css.innerHTML += keyframeprefix + "transform: translate3d(0,0,0); " + keyframeprefix + "animation: " + totalTime + "s " + options.cssAnimationName + " infinite; }\n";
+          if (options.cssLocation !== undefined) options.cssLocation.appendChild(css);
+          else document.body.appendChild(css);
+        } else {
+          options.fallbackFunction();
+        }
+      })();
+    }
+    cssSlidy();
+
+
+  </script>
+</body>
+
+</html>

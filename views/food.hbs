@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Food</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    {{>header}}
+    {{#if prod}}
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+            <div class="close_button">
+                <span class="close">&times;</span>
+            </div>
+            <div class="card_info">
+                <div class="info_product">
+                    <h1>{{prod.title}}</h1>
+                    <img src="/Cookies/foods/{{prod.image}}" alt="Burger">
+                </div>
+                <div class="count_product">
+                    <div class="count">
+                        <form action="/addCard/{{prod.id}}">
+                        <p>Count` &#x20;</p>
+                            <input type="number" name="count" id="count" value="1"> <br>
+                            <button type="button" id="plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            <button type="button" id="minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="price">
+                        <input type="hidden" name="price" id="hidden_price">
+                        <p>Price` &#160;</p>
+                        <p id="price"> {{prod.price}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="add">
+                <button>Add Card</button>
+            </div>
+            </form>
+        </div>
+
+    </div>
+    {{/if}}
+    <main>
+        <div class="zambyux">
+            <a href="/orders"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a>
+        </div>
+        <div class="content">
+            <div class="menu">
+                <div class="link" id="active"><a href="/food">Dishes</a></div>
+                <div class="link"><a href="/salad">Salads</a></div>
+                <div class="link"><a href="/drink">Drinks</a></div>
+            </div>
+            <div class="food">
+                {{#each food}}
+                <div class="product">
+                    <div class="product_img">
+                        <img src="/Cookies/foods/{{image}}" alt="Burger">
+                    </div>
+                    <div class="product_info">
+                        <div class="product_name">
+                            <p>{{title}}</p>
+                        </div>
+                        <hr>
+                        <div class="product_price">
+                            <p>{{price}} AMD</p>
+                        </div>
+                    </div>
+                    <div class="product_links">
+                        <div class="product_links1" id="myBtn">
+                            <form action="/openCard/{{id}}">
+                                <button>Buy</button>
+                            </form>
+                        </div>
+                        <div class="product_links2">
+                            <form>
+                                <button>
+                                    <a href="/single/{{id}}">See more</a>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </main>
+
+    {{>footer}}
+
+</body>
+<script>
+    var arjeq = document.getElementById("price")
+    const zeroprice = +arjeq.textContent
+    var modal = document.getElementById("myModal");
+    var plus = document.getElementById("plus");
+    var minus = document.getElementById("minus");
+    var qanak = document.getElementById("count")
+    var hideden_arjeq = document.getElementById("hidden_price")
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+    plus.onclick = function () {
+        var value = qanak.value;
+        value++
+        qanak.value = value;
+        arjeq.innerHTML = value * zeroprice
+        hideden_arjeq.value = value * zeroprice
+    }
+    minus.onclick = function () {
+        var value = qanak.value;
+        if (value > 1) {
+            value--
+        }
+        qanak.value = value;
+        arjeq.innerHTML = value * zeroprice
+        hideden_arjeq.value = value * zeroprice
+
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    } 
+</script>
+
+</html>

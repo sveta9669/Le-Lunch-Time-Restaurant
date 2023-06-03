@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Food</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    {{>header}}
+
+    <main>
+        <div class="content">
+            <div class="menu">
+                <div class="link"><a href="/food">Dishes</a></div>
+                <div class="link"><a href="/salad">Salads</a></div>
+                <div class="link" id="active"><a href="/drink">Drinks</a></div>
+            </div>
+            <div class="food">
+                {{#each drink}}
+                <div class="product">
+                    <div class="product_img">
+                        <img src="/Cookies/foods/{{image}}" alt="Burger">
+                    </div>
+                    <div class="product_info">
+                        <div class="product_name">
+                            <p>{{title}}</p>
+                        </div>
+                        <hr>
+                        <div class="product_price">
+                            <p>{{price}} AMD</p>
+                        </div>
+                    </div>
+                    <div class="product_links">
+                        <div class="product_links1"><a href="#">Buy</a></div>
+                        <div class="product_links2"><a href="/single/{{id}}">See more</a></div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </main>
+
+    {{>footer}}
+
+</body>
+
+</html>

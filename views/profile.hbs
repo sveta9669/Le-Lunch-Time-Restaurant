@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    {{>header}}
+    <main>
+        <div class="content_profile">
+            <div class="profile_menu">
+                <div class="profile_pic">
+                    <img src="./Images/profile.jpg">
+                </div>
+                <div class="profile_username">
+                    <h2>{{user.name}} {{user.surname}}</h2>
+                </div>
+                <div class="profile_links">
+                    <ul>
+                        <li>
+                            <a href="/profile"><i class="fa fa-user" aria-hidden="true"></i>Settings </a>
+                        </li>
+                        <li>
+                            <a href="/orders"><i class="fa fa-shopping-cart" aria-hidden="true"></i>My order </a>
+                        </li>
+                        <li>
+                            <a href="/signout"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign out </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="profile_info">
+                <form action="/update">
+                    <div class="mb-2 mt-2">
+                        <input type="text" name="name" placeholder="name" value="{{user.name}}"> <br>
+                        <input type="text" name="surname" placeholder="surname" value="{{user.surname}}"> <br>
+                        <input type="number" name="age" placeholder="age" value="{{user.age}}"> <br>
+                        <input type="email" name="email" placeholder="email" value="{{user.email}}"> <br> <br>
+                        <button>Save</button>
+                    </div>
+                </form>
+                <br>
+                <form action="/changepassword">
+                    <div class="mb-2 mt-2">
+                        <input type="password" name="oldpassword" placeholder="old pasword"> <br>
+                        <input type="password" name="newpassword" placeholder="new pasword"> <br>
+                        <input type="password" name="confirmpassword" placeholder="confirm password"> <br><br>
+                        <button>Change</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <div class="second_footer">
+
+        {{>footer}}
+    </div>
+</body>
+
+</html>

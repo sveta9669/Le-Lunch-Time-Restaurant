@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    {{>header}}
+
+    <main>
+        <div class="content_contact">
+            <div class="form">
+                <div class="right">
+                    <p>Please fill in the fields and address any questions
+                        or concerns you may have.</p>
+                    <br>
+                    <p>You can also contact us at the following phone numbers: <br>
+                        &nbsp;&nbsp;(010) 001 001
+                        &nbsp;&nbsp;(060) 066 066 <br>
+                        or visit Tigran Mec 26.</p>
+                </div>
+                <div class="left">
+                    <div class="first_part">
+                        <form action="/feedback" method="post">
+                            <input type="text" name="name" placeholder="Name" required="yes" autocomplete="off"> <br>
+                            <input type="text" name="surname" placeholder="Surname" required="yes" autocomplete="off"> <br>
+                            <input type="email" name="email" placeholder="Email" required="yes" autocomplete="off"> <br>
+                            <br>
+                    </div>
+                    <div class="second_part">
+                        <textarea name="message" placeholder="Message:"></textarea>
+                        <br>
+                        <input type="submit" name="submit">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5693.66721919435!2d44.43661666925257!3d40.17678757739386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406abd10e630b5ff%3A0xa4c7997b6a5c7da3!2z1L3VuNaC1b_VuNW81bjVrw!5e0!3m2!1shy!2sam!4v1683914778869!5m2!1shy!2sam"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </main>
+
+    {{>footer}}
+</body>
+
+</html>

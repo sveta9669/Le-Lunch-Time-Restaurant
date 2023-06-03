@@ -1,0 +1,99 @@
+
+<header>
+  <div class="header">
+    <div class="header1">
+      <div class="header_img">
+        <a href="/">
+          <img src="/Images/logo2.png" alt="Logo">
+        </a>
+      </div>
+    </div>
+    <div class="header2">
+      <div class="search">
+        <input type="text" placeholder="Search your preferred food..." id="myInput" onclick="myFunction()" onkeyup="filterFunction()">
+        <div class="dropdown-content" id="myDropdown">
+          {{#each food}}
+          <a href="/single/{{id}}">{{title}}</a>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="header3">
+
+    <nav>
+      <ul>
+        <li class="current-item"><a href="/">Home</a></li>
+        <li><a href="/food">Products</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact">Contact</a></li>
+
+        {{#if login}}
+        <li><a href="/login">Profile</a></li>
+        <li><a href="/signout">Sign Out</a></li>
+        {{else}}
+        <li><a href="/signin">Sign In/Up</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+    </div>
+    <div id="hamburger-icon" onclick=toggleMobileMenu()>
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+      <ul class="mobile-menu">
+        <li class="current-item"><a href="/">Home</a></li>
+        <li><a href="/food">Products</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact">Contact</a></li>
+
+        {{#if login}}
+        <li><a href="/login">Profile</a></li>
+        <li><a href="/signout">Sign Out</a></li>
+        {{else}}
+        <li><a href="/signin">Sign In/Up</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</header>
+<script>
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+      txtValue = a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+    }
+  }
+
+  window.onclick = function (event) {
+    if (!event.target.matches('#myInput')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var openDropdown = dropdowns[0];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+
+  
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById("hamburger-icon")
+    console.log(menu)
+    menu.classList.toggle('open'); 
+    console.log(menu)
+  }
+
+</script> 
